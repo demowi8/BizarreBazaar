@@ -32,5 +32,22 @@ namespace BizarreBazaar.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+        public IEnumerable<ProductListItem> GetProducts()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx
+                    .Products
+                    .Where(e => e.OwnerID == _userID)
+                    .Select(e => new ProductListItem
+                    {
+                        ProductID = e.ProductID,
+                        Name = e.Name,
+                        Price = e.Price,
+                    });
+                return query.ToArray();
+                //This allows us to see all products per user
+            }
+        }
     }
 }
