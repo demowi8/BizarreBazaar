@@ -16,5 +16,10 @@ namespace BizarreBazaar.Controllers
             var model = new ProductListItem[0];
             return View(model);
         }
+        //GET CREATE
+        public ActionResult Create()
+        {
+            return View();
+        }
     }
 }

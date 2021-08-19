@@ -11,6 +11,8 @@ namespace BizarreBazaar.Data
     {
         [Key]
         public int ProductID { get; set; }
+        [Required]
+        public Guid OwnerID { get; set; }
 
         [Required]
         public string Name { get; set; }
