@@ -81,5 +81,18 @@ namespace BizarreBazaar.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+        public bool DeleteProduct(int productID)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Products
+                    .Single(e => e.ProductID == productID && e.OwnerID == _userID);
+
+                ctx.Products.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
