@@ -19,9 +19,9 @@ namespace BizarreBazaar.Data
         public decimal Price { get; set; }
 
         [Required]
-        [Range(1,2000, ErrorMessage ="Choose Wisely")]
-        [Display(Name="Stock")]
-        public int AmountOf { get; set; }
+        [Range(1,2000, ErrorMessage ="Have at least 1 and no more than 2000.")]
+        [Display(Name="# in Stock")]
+        public int InventoryCount { get; set; }
         
         [Required]
         [MaxLength(150, ErrorMessage ="Too many words")]
