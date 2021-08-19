@@ -52,6 +52,41 @@ namespace BizarreBazaar.Controllers
 
             return View(model);
         }
+        public ActionResult Edit(int id)
+        {
+            var service = CreateProductService();
+            var detail = service.GetProductByID(id);
+            var model = new ProductEdit
+            {
+                ProductID = detail.ProductID,
+                Name = detail.Name,
+                Description = detail.Description,
+                InventoryCount = detail.InventoryCount,
+                Price = detail.Price
+            };
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, ProductEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if(model.ProductID != id)
+            {
+                ModelState.AddModelError("", "ID Mismatch");
+                return View(model);
+            }
+            var service = CreateProductService();
+
+            if(service.UpdateProduct(model))
+            {
+                TempData["SaveResult"] = "Your Product was updated.";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Your product could not be updated.");
+            return View(model);
+        }
 
         private ProductService CreateProductService()
         {

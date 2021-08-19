@@ -66,5 +66,20 @@ namespace BizarreBazaar.Services
                 };
             }
         }
+        public bool UpdateProduct(ProductEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Products
+                    .Single(e => e.ProductID == model.ProductID && e.OwnerID == _userID);
+                entity.Name = model.Name;
+                entity.Description = model.Description;
+                entity.InventoryCount = model.InventoryCount;
+                entity.Price = model.Price;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
