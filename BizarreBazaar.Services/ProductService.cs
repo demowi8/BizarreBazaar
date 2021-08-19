@@ -49,5 +49,22 @@ namespace BizarreBazaar.Services
                 //This allows us to see all products per user
             }
         }
+        public ProductDetail GetProductByID(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Products
+                    .Single(e => e.ProductID == id && e.OwnerID == _userID);
+                return new ProductDetail
+                {
+                    ProductID = entity.ProductID,
+                    Name = entity.Name,
+                    Description = entity.Description,
+                    InventoryCount = entity.InventoryCount,
+                    Price = entity.Price
+                };
+            }
+        }
     }
 }

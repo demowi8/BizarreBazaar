@@ -45,6 +45,13 @@ namespace BizarreBazaar.Controllers
             return View(model);
 
         }
+        public ActionResult Details(int id)
+        {
+            var svc = CreateProductService();
+            var model = svc.GetProductByID(id);
+
+            return View(model);
+        }
 
         private ProductService CreateProductService()
         {
