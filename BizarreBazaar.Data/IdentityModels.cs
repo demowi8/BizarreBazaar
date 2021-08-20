@@ -33,6 +33,7 @@ namespace BizarreBazaar.Models
             return new ApplicationDbContext();
         }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Bid> Bids { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
