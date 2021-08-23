@@ -28,5 +28,16 @@ namespace BizarreBazaar.Data
         [Required]
         [MaxLength(150, ErrorMessage ="Too many words")]
         public string Description { get; set; }
+
+        public decimal StartingBid { get; set; }
+        public decimal? BidIncrement { get
+            {
+                if (Price >= 1)
+                {
+                    decimal bidIncrement = Price * 0.10m;
+                    return bidIncrement;
+                }
+                return null;
+            } }
     }
 }

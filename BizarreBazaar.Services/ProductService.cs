@@ -24,7 +24,8 @@ namespace BizarreBazaar.Services
                 Name = model.Name,
                 Price = model.Price,
                 InventoryCount = model.InventoryCount,
-                Description = model.Description
+                Description = model.Description,
+                StartingBid = model.StartingBid
             };
             using (var ctx = new ApplicationDbContext())
             {
