@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,10 @@ namespace BizarreBazaar.Data
         [Required]
         public bool WinningBid { get; set; }
 
-        [Required]
-        public decimal StartingBid { get; set; }
-        public decimal BidIncrement { get; set; }
-
         public DateTimeOffset Created { get; set; }
 
+        [ForeignKey("Bid")]
+        public int ProductID { get; set; }
+        public Product BiddedProduct { get; set; }
     }
 }

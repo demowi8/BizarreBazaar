@@ -8,6 +8,9 @@ namespace BizarreBazaar.Models
 {
     public class BidCreateBid
     {
-
+        public bool WinningBid { get
+            {
+                return true;
+            } }
     }
 }

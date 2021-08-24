@@ -62,7 +62,8 @@ namespace BizarreBazaar.Controllers
                 Name = detail.Name,
                 Description = detail.Description,
                 InventoryCount = detail.InventoryCount,
-                Price = detail.Price
+                Price = detail.Price,
+                StartingBid = detail.StartingBid
             };
             return View(model);
         }

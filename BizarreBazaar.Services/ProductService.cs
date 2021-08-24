@@ -44,7 +44,7 @@ namespace BizarreBazaar.Services
                     {
                         ProductID = e.ProductID,
                         Name = e.Name,
-                        Price = e.Price,
+                        Price = e.Price
                     });
                 return query.ToArray();
                 //This allows us to see all products per user
@@ -63,7 +63,9 @@ namespace BizarreBazaar.Services
                     Name = entity.Name,
                     Description = entity.Description,
                     InventoryCount = entity.InventoryCount,
-                    Price = entity.Price
+                    Price = entity.Price,
+                    StartingBid = entity.StartingBid,
+                    BidIncrement = entity.BidIncrement
                 };
             }
         }
@@ -78,6 +80,7 @@ namespace BizarreBazaar.Services
                 entity.Description = model.Description;
                 entity.InventoryCount = model.InventoryCount;
                 entity.Price = model.Price;
+                entity.StartingBid = model.StartingBid;
 
                 return ctx.SaveChanges() == 1;
             }

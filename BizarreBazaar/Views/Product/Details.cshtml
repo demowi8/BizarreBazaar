@@ -45,12 +45,37 @@
         <dt>
             @Html.DisplayNameFor(model => model.Price)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Price)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.StartingBid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartingBid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BidIncrement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BidIncrement)
+        </dd>
     </dl>
+
+    <div class="form-horizontal">
+        <h4>BidCreateBid</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Bid" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |

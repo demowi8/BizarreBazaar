@@ -7,13 +7,13 @@ namespace BizarreBazaar.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class ThirdMigration : IMigrationMetadata
+    public sealed partial class FourthMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ThirdMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FourthMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202108231400534_ThirdMigration"; }
+            get { return "202108231608208_FourthMigration"; }
         }
         
         string IMigrationMetadata.Source
