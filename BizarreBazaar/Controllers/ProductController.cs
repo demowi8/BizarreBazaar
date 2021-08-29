@@ -12,7 +12,7 @@ namespace BizarreBazaar.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult Index()
+        public ActionResult ProductIndex()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new ProductService(userID);
@@ -21,14 +21,14 @@ namespace BizarreBazaar.Controllers
             return View(model);
         }
         //GET CREATE
-        public ActionResult Create()
+        public ActionResult ProductCreate()
         {
             return View();
         }
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductCreate model)
+        public ActionResult ProductCreate(ProductCreate model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -44,14 +44,14 @@ namespace BizarreBazaar.Controllers
             return View(model);
 
         }
-        public ActionResult Details(int id)
+        public ActionResult ProductDetails(int id)
         {
             var svc = CreateProductService();
             var model = svc.GetProductByID(id);
 
             return View(model);
         }
-        public ActionResult Edit(int id)
+        public ActionResult ProductEdit(int id)
         {
             var service = CreateProductService();
             var detail = service.GetProductByID(id);
@@ -68,7 +68,7 @@ namespace BizarreBazaar.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, ProductEdit model)
+        public ActionResult ProductEdit(int id, ProductEdit model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -87,7 +87,7 @@ namespace BizarreBazaar.Controllers
             ModelState.AddModelError("", "Your product could not be updated.");
             return View(model);
         }
-        public ActionResult Delete(int id)
+        public ActionResult ProductDelete(int id)
         {
             var svc = CreateProductService();
             var model = svc.GetProductByID(id);
