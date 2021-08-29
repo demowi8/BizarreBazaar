@@ -25,7 +25,7 @@ namespace BizarreBazaar.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(BidCreateBid model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid) return View();
 
             var service = CreateBidService();
 

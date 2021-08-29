@@ -77,7 +77,12 @@
     <Compile Include="Migrations\202108231608208_FourthMigration.Designer.cs">
       <DependentUpon>202108231608208_FourthMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108251509328_FifthMigration.cs" />
+    <Compile Include="Migrations\202108251509328_FifthMigration.Designer.cs">
+      <DependentUpon>202108251509328_FifthMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Auction.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,6 +106,15 @@
     <EmbeddedResource Include="Migrations\202108231608208_FourthMigration.resx">
       <DependentUpon>202108231608208_FourthMigration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108251509328_FifthMigration.resx">
+      <DependentUpon>202108251509328_FifthMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BizarreBazaar.Models\BizarreBazaar.Models.csproj">
+      <Project>{C642746E-7758-46B7-BB20-05BD069F7250}</Project>
+      <Name>BizarreBazaar.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

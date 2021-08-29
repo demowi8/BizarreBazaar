@@ -12,5 +12,7 @@ namespace BizarreBazaar.Models
         public int AmountOfBids { get; set; }
         public DateTimeOffset Created { get; set; }
         public bool WinningBid { get; set; }
+
+        public ProductDetail Product { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BizarreBazaar.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,16 +17,10 @@ namespace BizarreBazaar.Data
         [Required]
         public Guid OwnerID { get; set; }
 
-        [Required]
-        public int AmountOfBids { get; set; }
-
-        [Required]
-        public bool WinningBid { get; set; }
+        public decimal BiddingAmount { get; set; }
 
         public DateTimeOffset Created { get; set; }
 
-        [ForeignKey("Bid")]
-        public int ProductID { get; set; }
-        public Product BiddedProduct { get; set; }
+
     }
 }

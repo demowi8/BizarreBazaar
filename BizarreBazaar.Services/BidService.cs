@@ -21,7 +21,6 @@ namespace BizarreBazaar.Services
             var entity = new Bid()
             {
                 OwnerID = _userID,
-                WinningBid = model.WinningBid
             };
             using (var ctx = new ApplicationDbContext())
             {

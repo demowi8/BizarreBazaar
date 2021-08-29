@@ -35,6 +35,7 @@ namespace BizarreBazaar.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Bid> Bids { get; set; }
         public DbSet<Business> Businesses { get; set; }
+        public DbSet<Auction> Auctions { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
