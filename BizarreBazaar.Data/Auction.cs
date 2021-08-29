@@ -15,6 +15,8 @@ namespace BizarreBazaar.Data
 
         [Required]
         public string Title { get; set; }
+
+        [Required]
         public Guid OwnerID { get; set; }
 
         public decimal ActualAmount { get; set; }

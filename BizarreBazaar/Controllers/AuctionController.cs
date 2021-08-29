@@ -17,7 +17,7 @@ namespace BizarreBazaar.Controllers
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new AuctionService(userID);
-            var model = service.GetAuctions();
+            var model = service.GetAuctionListings();
 
             return View(model);
         }
@@ -35,7 +35,7 @@ namespace BizarreBazaar.Controllers
 
             var service = CreateAuctionService();
 
-            if(service.AuctionCreate(auction))
+            if(service.CreateAuction(auction))
             {
                 TempData["SaveResult"] = "Your Auction was created.";
                 return RedirectToAction("Index");
@@ -58,12 +58,10 @@ namespace BizarreBazaar.Controllers
             var detail = service.GetAuctionByID(id);
             var model = new AuctionEdit
             {
-                //ProductID = detail.ProductID,
-                //Name = detail.Name,
-                //Description = detail.Description,
-                //InventoryCount = detail.InventoryCount,
-                //Price = detail.Price,
-                //StartingBid = detail.StartingBid
+                AuctionID = detail.AuctionID,
+                Title = detail.Title,
+                ProductID = detail.ProductID,
+                EndingTime = detail.EndingTime
             };
             return View(model);
         }
@@ -80,7 +78,7 @@ namespace BizarreBazaar.Controllers
             }
             var service = CreateAuctionService();
 
-            if(service.UpdateProduct(model))
+            if(service.UpdateAuction(model))
             {
                 TempData["SaveResult"] = "Your Auction was updated.";
                 return RedirectToAction("Index");
@@ -102,14 +100,14 @@ namespace BizarreBazaar.Controllers
         {
             var service = CreateAuctionService();
 
-            service.DeleteProduct(id);
+            service.DeleteAuction(id);
 
             TempData["SaveResult"] = "Your auction was deleted.";
 
             return RedirectToAction("Index");
         }
 
-        private ProductService CreateAuctionService()
+        private AuctionService CreateAuctionService()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new AuctionService(userID);

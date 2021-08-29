@@ -12,6 +12,11 @@ namespace BizarreBazaar.Services
     public class AuctionService
     {
         private readonly Guid _userID;
+
+        public AuctionService(Guid userID) 
+        {
+            _userID = userID;
+        }
         public bool CreateAuction(AuctionCreate auction)
         {
             var entity = new Auction()
@@ -58,7 +63,8 @@ namespace BizarreBazaar.Services
                     Title = entity.Title,
                     ProductID = entity.ProductID,
                     ActualAmount = entity.ActualAmount,
-                    CreatedUtc = entity.Created
+                    CreatedUtc = entity.Created,
+                    EndingTime = entity.EndingTime
                 };
             }
         }
@@ -66,12 +72,12 @@ namespace BizarreBazaar.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Auctions.Single(e => e.AuctionID == auction.AuctionID);
+                var entity = ctx.Auctions.Single(e => e.AuctionID == auction.AuctionID && e.OwnerID == _userID);
 
                 entity.Title = auction.Title;
                 entity.ProductID = auction.ProductID;
                 entity.EndingTime = auction.EndingTime;
-                entity.Modified = auction.Modified;
+                entity.Modified = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() >= 1;
             }
@@ -80,7 +86,7 @@ namespace BizarreBazaar.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Auctions.Single(e => e.AuctionID == auctionID);
+                var entity = ctx.Auctions.Single(e => e.AuctionID == auctionID && e.OwnerID == _userID);
 
                 ctx.Auctions.Remove(entity);
 

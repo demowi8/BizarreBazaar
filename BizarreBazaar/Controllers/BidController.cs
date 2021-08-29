@@ -11,11 +11,6 @@ namespace BizarreBazaar.Controllers
 {
     public class BidController : Controller
     {
-        // GET: Bid
-        public ActionResult Index()
-        {
-            return View();
-        }
         public ActionResult BidCreate()
         {
             return View();
