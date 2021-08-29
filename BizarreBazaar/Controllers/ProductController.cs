@@ -37,7 +37,7 @@ namespace BizarreBazaar.Controllers
             if(service.CreateProduct(model))
             {
                 TempData["SaveResult"] = "Your product was created.";
-                return RedirectToAction("Index");
+                return RedirectToAction("ProductIndex");
             }
             ModelState.AddModelError("", "Product could not be created.");
 
@@ -82,7 +82,7 @@ namespace BizarreBazaar.Controllers
             if(service.UpdateProduct(model))
             {
                 TempData["SaveResult"] = "Your Product was updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("ProductIndex");
             }
             ModelState.AddModelError("", "Your product could not be updated.");
             return View(model);
@@ -93,7 +93,7 @@ namespace BizarreBazaar.Controllers
             var model = svc.GetProductByID(id);
 
             return View(model);
-        }
+        } 
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -105,7 +105,7 @@ namespace BizarreBazaar.Controllers
 
             TempData["SaveResult"] = "Your product was deleted.";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ProductIndex");
         }
 
         private ProductService CreateProductService()

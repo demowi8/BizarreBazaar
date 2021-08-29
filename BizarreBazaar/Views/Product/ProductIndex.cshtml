@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "ProductCreate")
 </p>
 @if (TempData.ContainsKey("SaveResult"))
 {
@@ -47,9 +47,9 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {id=item.ProductID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+                @Html.ActionLink("Edit", "ProductEdit", new {id=item.ProductID }) |
+                @Html.ActionLink("Details", "ProductDetails", new { id = item.ProductID }) |
+                @Html.ActionLink("Delete", "ProductDelete", new { id = item.ProductID })
             </td>
         </tr>
     }
