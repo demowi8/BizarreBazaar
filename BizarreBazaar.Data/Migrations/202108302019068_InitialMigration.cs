@@ -1,23 +1,65 @@
-namespace BizarreBazaar.Data.Migrations
+﻿namespace BizarreBazaar.Data.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Auction",
+                c => new
+                    {
+                        AuctionID = c.Int(nullable: false, identity: true),
+                        Title = c.String(nullable: false),
+                        OwnerID = c.Guid(nullable: false),
+                        ActualAmount = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Created = c.DateTimeOffset(nullable: false, precision: 7),
+                        Modified = c.DateTimeOffset(nullable: false, precision: 7),
+                        EndingTime = c.DateTimeOffset(nullable: false, precision: 7),
+                        ProductID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.AuctionID)
+                .ForeignKey("dbo.Product", t => t.ProductID, cascadeDelete: true)
+                .Index(t => t.ProductID);
+            
             CreateTable(
                 "dbo.Product",
                 c => new
                     {
                         ProductID = c.Int(nullable: false, identity: true),
+                        OwnerID = c.Guid(nullable: false),
                         Name = c.String(nullable: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        AmountOf = c.Int(nullable: false),
+                        InventoryCount = c.Int(nullable: false),
                         Description = c.String(nullable: false, maxLength: 150),
+                        StartingBid = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.ProductID);
+            
+            CreateTable(
+                "dbo.Bid",
+                c => new
+                    {
+                        BidID = c.Int(nullable: false, identity: true),
+                        OwnerID = c.Guid(nullable: false),
+                        BiddingAmount = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Created = c.DateTimeOffset(nullable: false, precision: 7),
+                    })
+                .PrimaryKey(t => t.BidID);
+            
+            CreateTable(
+                "dbo.Business",
+                c => new
+                    {
+                        BusinessID = c.Int(nullable: false, identity: true),
+                        OwnerID = c.Guid(nullable: false),
+                        Name = c.String(nullable: false),
+                        PhoneNumber = c.String(nullable: false),
+                        EmailAddress = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.BusinessID);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -97,16 +139,21 @@ namespace BizarreBazaar.Data.Migrations
             DropForeignKey("dbo.IdentityUserLogin", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
+            DropForeignKey("dbo.Auction", "ProductID", "dbo.Product");
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
+            DropIndex("dbo.Auction", new[] { "ProductID" });
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");
             DropTable("dbo.ApplicationUser");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityRole");
+            DropTable("dbo.Business");
+            DropTable("dbo.Bid");
             DropTable("dbo.Product");
+            DropTable("dbo.Auction");
         }
     }
 }
