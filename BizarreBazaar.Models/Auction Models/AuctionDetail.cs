@@ -16,6 +16,8 @@ namespace BizarreBazaar.Models.Auction_Models
         public DateTimeOffset EndingTime { get; set; }
 
         public int ProductID { get; set; }
-        public virtual Product Product { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public decimal StartingBid { get; set; }
     }
 }

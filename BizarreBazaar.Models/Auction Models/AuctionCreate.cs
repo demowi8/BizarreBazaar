@@ -11,9 +11,6 @@ namespace BizarreBazaar.Models.Auction_Models
     {
         public string Title { get; set; }
 
-
-        public DateTimeOffset CreatedUtc  { get; set; }
         public int ProductID { get; set; }
-        public virtual Product Product { get; set; }
     }
 }

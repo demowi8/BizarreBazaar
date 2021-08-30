@@ -85,6 +85,10 @@
     <Compile Include="Migrations\202108291637061_SixthMigration.Designer.cs">
       <DependentUpon>202108291637061_SixthMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108301352092_SeventhMigration.cs" />
+    <Compile Include="Migrations\202108301352092_SeventhMigration.Designer.cs">
+      <DependentUpon>202108301352092_SeventhMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Auction.cs" />
     <Compile Include="Product.cs" />
@@ -118,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202108291637061_SixthMigration.resx">
       <DependentUpon>202108291637061_SixthMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108301352092_SeventhMigration.resx">
+      <DependentUpon>202108301352092_SeventhMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

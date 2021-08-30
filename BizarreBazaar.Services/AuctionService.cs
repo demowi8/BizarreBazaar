@@ -29,7 +29,7 @@ namespace BizarreBazaar.Services
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Auctions.Add(entity);
-                return ctx.SaveChanges() > 0;
+                return ctx.SaveChanges() == 1;
             }
         }
         public IEnumerable<AuctionListing> GetAuctionListings()
@@ -38,12 +38,12 @@ namespace BizarreBazaar.Services
             {
                 var query = ctx
                     .Auctions
-                    .Where(e => e.OwnerID == _userID)
                     .Select(e => new AuctionListing
                     {
                         AuctionID = e.AuctionID,
                         Title = e.Title,
                         ProductID = e.ProductID,
+                        //Name = e.Name,
                         ActualAmount = e.ActualAmount,
                         CreatedUtc = e.Created
                     });

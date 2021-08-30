@@ -10,8 +10,8 @@ namespace BizarreBazaar.Data
 {
     public class Product
     {
-        [Key]
         public int ProductID { get; set; }
+
         [Required]
         public Guid OwnerID { get; set; }
 
@@ -44,9 +44,9 @@ namespace BizarreBazaar.Data
             }
         }
 
-        [ForeignKey("Bid")]
-        public int? BidID { get; set; }
-        public virtual Bid Bid { get; set; }
+        //[ForeignKey("Bid")]
+        //public int? BidID { get; set; }
+        //public virtual Bid Bid { get; set; }
 
     }
 }
