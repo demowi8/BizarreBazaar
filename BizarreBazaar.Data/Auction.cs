@@ -29,9 +29,6 @@ namespace BizarreBazaar.Data
         public int ProductID { get; set; }
         public virtual Product Product { get; set; }
 
-        //[ForeignKey("Bid")]
-        //public int? BidID { get; set; }
-        //public virtual Bid Bid { get; set; }
 
     }
 }

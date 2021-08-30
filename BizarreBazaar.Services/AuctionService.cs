@@ -28,6 +28,8 @@ namespace BizarreBazaar.Services
             };
             using (var ctx = new ApplicationDbContext())
             {
+
+
                 ctx.Auctions.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
@@ -43,7 +45,9 @@ namespace BizarreBazaar.Services
                         AuctionID = e.AuctionID,
                         Title = e.Title,
                         ProductID = e.ProductID,
-                        //Name = e.Name,
+                        Name = e.Product.Name,
+                        Description = e.Product.Description,
+                        StartingBid = e.Product.StartingBid,
                         ActualAmount = e.ActualAmount,
                         CreatedUtc = e.Created
                     });
@@ -62,6 +66,9 @@ namespace BizarreBazaar.Services
                     AuctionID = entity.AuctionID,
                     Title = entity.Title,
                     ProductID = entity.ProductID,
+                    Name = entity.Product.Name,
+                    Description = entity.Product.Description,
+                    StartingBid = entity.Product.StartingBid,
                     ActualAmount = entity.ActualAmount,
                     CreatedUtc = entity.Created,
                     EndingTime = entity.EndingTime
