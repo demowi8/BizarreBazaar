@@ -18,10 +18,10 @@
                     @TempData["SaveResult"]
                 </div>
             }
-<table class="table">
+<table class="table table-bordered table-striped table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AuctionID)
+            #@Html.DisplayNameFor(model => model.AuctionID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
@@ -33,7 +33,7 @@
             @Html.DisplayNameFor(model => model.CreatedUtc)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProductID)
+            #@Html.DisplayNameFor(model => model.ProductID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)

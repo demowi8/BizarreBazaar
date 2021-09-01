@@ -56,7 +56,7 @@
     <Compile Include="Auction Models\AuctionDetail.cs" />
     <Compile Include="Auction Models\AuctionEdit.cs" />
     <Compile Include="Auction Models\AuctionListing.cs" />
-    <Compile Include="Bid Models\BidCreateBid.cs" />
+    <Compile Include="Bid Models\BidCreate.cs" />
     <Compile Include="Bid Models\BidListItemBid.cs" />
     <Compile Include="Business Models\BusinessCreate.cs" />
     <Compile Include="Business Models\BusinessDetail.cs" />

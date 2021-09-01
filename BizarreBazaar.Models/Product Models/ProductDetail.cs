@@ -18,9 +18,8 @@ namespace BizarreBazaar.Models
         public int InventoryCount { get; set; }
         public decimal Price { get; set; }
         public decimal StartingBid { get; set; }
-        public decimal? BidIncrement { get; set; }
+        public decimal BidIncrement { get; set; }
 
 
-        public virtual BidCreateBid Bid { get; set; }
     }
 }

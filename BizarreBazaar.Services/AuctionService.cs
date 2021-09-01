@@ -13,7 +13,7 @@ namespace BizarreBazaar.Services
     {
         private readonly Guid _userID;
 
-        public AuctionService(Guid userID) 
+        public AuctionService(Guid userID)
         {
             _userID = userID;
         }
@@ -38,41 +38,65 @@ namespace BizarreBazaar.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx
-                    .Auctions
-                    .Select(e => new AuctionListing
-                    {
-                        AuctionID = e.AuctionID,
-                        Title = e.Title,
-                        ProductID = e.ProductID,
-                        Name = e.Product.Name,
-                        Description = e.Product.Description,
-                        StartingBid = e.Product.StartingBid,
-                        ActualAmount = e.ActualAmount,
-                        CreatedUtc = e.Created
-                    });
-                return query.ToArray();
+                try
+                {
+
+                    var query = ctx
+                        .Auctions
+                        .Select(e => new AuctionListing
+                        {
+                            AuctionID = e.AuctionID,
+                            Title = e.Title,
+                            ProductID = e.ProductID,
+                            Name = e.Product.Name,
+                            Description = e.Product.Description,
+                            StartingBid = e.Product.StartingBid,
+                            ActualAmount = e.Product.StartingBid,
+                            CreatedUtc = e.Created
+                        });
+                    return query.ToArray();
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
         public AuctionDetail GetAuctionByID(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx
-                    .Auctions
-                    .Single(e => e.AuctionID == id && e.OwnerID == _userID);
-                return new AuctionDetail
+                try
                 {
-                    AuctionID = entity.AuctionID,
-                    Title = entity.Title,
-                    ProductID = entity.ProductID,
-                    Name = entity.Product.Name,
-                    Description = entity.Product.Description,
-                    StartingBid = entity.Product.StartingBid,
-                    ActualAmount = entity.ActualAmount,
-                    CreatedUtc = entity.Created,
-                    EndingTime = entity.EndingTime
-                };
+
+                    var entity = ctx
+                        .Auctions
+                        .Single(e => e.AuctionID == id && e.OwnerID == _userID);
+                    return new AuctionDetail
+                    {
+                        AuctionID = entity.AuctionID,
+                        Title = entity.Title,
+                        ProductID = entity.ProductID,
+                        Name = entity.Product.Name,
+                        Description = entity.Product.Description,
+                        BidList = entity.Bids.Select(e => new BidListItemBid
+                        {
+                            BidID = e.BidID,
+                            BidAmount = e.BidAmount,
+                            AuctionID = e.AuctionID,
+                            Created = e.Created,
+                            Title = e.Auction.Title
+                        }).ToList(),
+                        StartingBid = entity.Product.StartingBid,
+                        ActualAmount = entity.ActualAmount,
+                        CreatedUtc = entity.Created,
+                        EndingTime = entity.EndingTime
+                    };
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
         public bool UpdateAuction(AuctionEdit auction)
@@ -97,7 +121,7 @@ namespace BizarreBazaar.Services
 
                 ctx.Auctions.Remove(entity);
 
-                return ctx.SaveChanges() >= 1; 
+                return ctx.SaveChanges() >= 1;
             }
         }
     }

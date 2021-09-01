@@ -19,5 +19,7 @@ namespace BizarreBazaar.Models.Auction_Models
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal StartingBid { get; set; }
+
+        public List<BidListItemBid> BidList { get; set; } = new List<BidListItemBid>();
     }
 }

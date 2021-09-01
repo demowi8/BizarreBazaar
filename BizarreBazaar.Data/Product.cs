@@ -31,7 +31,7 @@ namespace BizarreBazaar.Data
         public string Description { get; set; }
 
         public decimal StartingBid { get; set; }
-        public decimal? BidIncrement
+        public decimal BidIncrement
         {
             get
             {
@@ -40,13 +40,11 @@ namespace BizarreBazaar.Data
                     decimal bidIncrement = Price * 0.10m;
                     return bidIncrement;
                 }
-                return null;
+                return 1;
             }
         }
 
-        //[ForeignKey("Bid")]
-        //public int? BidID { get; set; }
-        //public virtual Bid Bid { get; set; }
+
 
     }
 }

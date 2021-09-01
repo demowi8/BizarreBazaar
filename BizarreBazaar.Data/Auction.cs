@@ -24,11 +24,11 @@ namespace BizarreBazaar.Data
         public DateTimeOffset Modified { get; set; }
         public DateTimeOffset EndingTime { get; set; }
 
-
         [ForeignKey("Product")]
         public int ProductID { get; set; }
         public virtual Product Product { get; set; }
 
+        public virtual List<Bid> Bids { get; set; }
 
     }
 }

@@ -1,4 +1,6 @@
-﻿using BizarreBazaar.Models;
+﻿using BizarreBazaar.Data;
+using BizarreBazaar.Models;
+using BizarreBazaar.Models.Bid_Models;
 using BizarreBazaar.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -11,35 +13,25 @@ namespace BizarreBazaar.Controllers
 {
     public class BidController : Controller
     {
-        public ActionResult BidCreate()
-        {
-            return View();
-        }
-        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(BidCreateBid model)
+
+
+        public ActionResult AddBid(BidCreate bid)
         {
             if (!ModelState.IsValid) return View();
 
-            var service = CreateBidService();
-
-            if(service.CreateBid(model))
-            {
-                TempData["SaveResult"] = "Your Bid was made.";
-                return RedirectToAction("Index");
-            }
-            ModelState.AddModelError("", "Your bid could not be made");
-
-            return View(model);
-        }
-
-        private BidService CreateBidService()
-        {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new BidService(userID);
 
-            return service;
+            if(service.CreateBid(bid))
+            {
+                TempData["SaveResult"] = "Your Bid was made.";
+                return View();
+            }
+            ModelState.AddModelError("", "Bid couldn't be made.");
+
+            return View();
         }
+
+
     }
 }

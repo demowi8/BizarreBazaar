@@ -17,9 +17,13 @@ namespace BizarreBazaar.Data
         [Required]
         public Guid OwnerID { get; set; }
 
-        public decimal BiddingAmount { get; set; }
+        public decimal BidAmount { get; set; }
 
         public DateTimeOffset Created { get; set; }
+
+        [ForeignKey("Auction")]
+        public int AuctionID { get; set; }
+        public virtual Auction Auction { get; set; }
 
 
     }

@@ -14,13 +14,16 @@
             Are you a bidder? Are you a seller? Doesn't matter list your items or bid on them too.
             Just make sure you back up what you say or else we have mad dogs come your way.
         </p>
+        @Html.ActionLink("Create a Product", "ProductCreate", "Product")
     </div>
     <div class="col-md-4">
         <h2>Sell</h2>
-        <p>List your items here!</p>
+        <p class="alert">List your items here after you've created your products!</p>
+        @Html.ActionLink("Auctions", "Index", "Auction" )
     </div>
     <div class="col-md-4">
         <h2>Bid</h2>
         <p>Find all the best deal on items. Make sure you make a good bid! Dont be shy!</p>
+        <p class="text-warning">Bidding will be available soon!</p>
     </div>
 </div>
